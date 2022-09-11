@@ -91,6 +91,7 @@ def main():
             if x == snake[-1]:
                 reset += 1
         if reset > 1:
+            print(len(snake))
             direction=1
             snake = [0, 1, 2]
             applepos=random.randint(3,h*w-1)
