@@ -19,6 +19,7 @@ def main():
     correction =0
     snake = [0, 1, 2]
     applepos=random.randint(3,h*w-1)
+    apples =[]
     # define a variable to control the main loop and stuff
     running = True
     check = True
@@ -29,9 +30,11 @@ def main():
     # create a surface on screen that has the size of what we specify
     screen = pygame.display.set_mode((width,height))
     #loading images
-    image = pygame.image.load("basic tile.bmp")
-    image_apple = pygame.image.load("apple.bmp")
-    image_head = pygame.image.load("blue.bmp")
+    image = pygame.image.load("/home/adam/projects/python/Hackerman/basic tile.bmp")
+    image_apple = pygame.image.load("/home/adam/projects/python/Hackerman/apple.bmp")
+    image_head = pygame.image.load("/home/adam/projects/python/Hackerman/blue.bmp")
+    image_fat= pygame.image.load("/home/adam/projects/python/Hackerman/basic_fat.bmp")
+
     r = 60
     g = 60
     b = 60
@@ -75,6 +78,7 @@ def main():
         correction = 0
         #making snake longer when it eats an apple and generating new ones
         if applepos == snake[-1]:
+            apples.append(applepos)
             #we need to guard for apples not to generate in the snake
             while check:
                 applepos=random.randint(0,h*w-1)
@@ -83,8 +87,15 @@ def main():
                     if x == applepos:
                         check = True
             check = True
-        else:
+        #shortening the snake
+        pop = 1
+        for i in apples:
+            if snake[0] == i:
+                pop = 0
+        if pop:
             snake.pop(0)
+        else:
+            apples.pop(0)
         #we need a reset when snake eats itself
         reset = 0
         for x in snake:
@@ -102,6 +113,8 @@ def main():
         for x in snake:
             screen.blit(image, (x%w*tile_side,(math.floor(x/w))*tile_side))
         screen.blit(image_apple, (applepos%w*tile_side,tile_side*math.floor(applepos/w)))
+        for i in apples:
+            screen.blit(image_fat, (i%w*tile_side,(math.floor(i/w))*tile_side))
         screen.blit(image_head, (snake[-1]%w*tile_side,tile_side*math.floor(snake[-1]/w)))
         pygame.display.flip()
 
