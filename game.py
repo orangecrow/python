@@ -30,10 +30,10 @@ def main():
     # create a surface on screen that has the size of what we specify
     screen = pygame.display.set_mode((width,height))
     #loading images
-    image = pygame.image.load("/home/adam/projects/python/Hackerman/basic tile.bmp")
-    image_apple = pygame.image.load("/home/adam/projects/python/Hackerman/apple.bmp")
-    image_head = pygame.image.load("/home/adam/projects/python/Hackerman/blue.bmp")
-    image_fat= pygame.image.load("/home/adam/projects/python/Hackerman/basic_fat.bmp")
+    image = pygame.image.load("basic tile.bmp")
+    image_apple = pygame.image.load("apple.bmp")
+    image_head = pygame.image.load("blue.bmp")
+    image_fat= pygame.image.load("basic_fat.bmp")
 
     r = 60
     g = 60
